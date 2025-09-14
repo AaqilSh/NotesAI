@@ -1,0 +1,7 @@
+id,title,content,email,created_at,age,active
+1,Hello World,This is my first note.,alice@example.com,2025-09-01T10:30:00Z,29,true
+2,Learning Postgres,"Notes about Drizzle, pgvector, and Neon!",bob@example.com,2025-09-05T14:45:00Z,34,yes
+3,Messy Data,"Some fields might be empty...",,2025-09-10T09:00:00Z,,false
+4,CSV Import,"This one has a wrong date format",charlie@example.com,09/12/2025,40,1
+5,Duplicates,"I may appear twice in the file",dana@example.com,2025-09-14T12:15:00Z,25,0
+5,Duplicates,"I may appear twice in the file (duplicate row)",dana@example.com,2025-09-14T12:15:00Z,25,0
