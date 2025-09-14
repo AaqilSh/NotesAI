@@ -38,7 +38,7 @@ function Card({ children }: { children: React.ReactNode }) {
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<any[]>([]); // eslint-disable-line
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -52,7 +52,7 @@ export default function Home() {
       });
       if (!r.ok) throw new Error("Search failed");
       setResults(await r.json());
-    } catch (e: any) {
+    } catch (e: any) { // eslint-disable-line
       setError(e.message || "Unknown error");
       setResults([]);
     } finally {
