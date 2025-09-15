@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 
 
 function Spinner() {
@@ -73,7 +73,7 @@ export default function Home() {
       <div style={{display: "flex", gap: 12, marginBottom: 24}}>
         <input
           value={query}
-          onChange={e=>setQuery(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
           placeholder="Search notes…"
           style={{
             flex: 1,
