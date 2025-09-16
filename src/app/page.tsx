@@ -108,19 +108,34 @@ export default function Home() {
       )}
       {loading && <Spinner />}
       <ul style={{marginTop:8, padding:0, listStyle: "none"}}>
-        {results.map((r) => (
-          <li key={r.id}>
-            <Card>
-              <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
-                <strong style={{fontSize: "1.1rem", color: "#fff"}}>{r.title}</strong>
-                <span style={{background: "#222", color: "#00bcd4", borderRadius: 6, padding: "2px 8px", fontSize: 13}}>
-                  distance: {Number(r.distance).toFixed(4)}
-                </span>
-              </div>
-              <p style={{marginTop: 8, color: "#bdbdbd"}}>{r.content}</p>
-            </Card>
-          </li>
-        ))}
+          {results.map((r) => (
+            <li key={r.id} style={{transition: "box-shadow 0.2s", borderRadius: 14, boxShadow: "0 0 0 rgba(0,0,0,0)", cursor: "pointer"}}
+                onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.18)")}
+                onMouseLeave={e => (e.currentTarget.style.boxShadow = "0 0 0 rgba(0,0,0,0)")}
+            >
+              <Card>
+                <div style={{display: "flex", alignItems: "center", gap: 12, marginBottom: 6}}>
+                  <div style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: "50%",
+                    background: "#222",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 700,
+                    fontSize: 18,
+                    color: "#00bcd4",
+                    boxShadow: "0 1px 4px rgba(0,0,0,0.12)"
+                  }}>
+                    {r.title?.[0]?.toUpperCase() || "N"}
+                  </div>
+                  <strong style={{fontSize: "1.1rem", color: "#fff"}}>{r.title}</strong>
+                </div>
+                <p style={{marginTop: 8, color: "#bdbdbd"}}>{r.content}</p>
+              </Card>
+            </li>
+          ))}
         {!loading && results.length === 0 && query.trim() && !error && (
           <div style={{marginTop: 32, textAlign: "center", color: "#888"}}>
             <span>No results found.</span>
