@@ -97,8 +97,11 @@ export default function Home() {
             fontSize: 16,
             border: "none",
             cursor: loading ? "not-allowed" : "pointer",
-            boxShadow: "0 1px 4px rgba(0,0,0,0.12)"
+            boxShadow: "0 1px 4px rgba(0,0,0,0.12)",
+            transition: "transform 0.18s cubic-bezier(.4,2,.3,.7)",
           }}
+          onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.06)")}
+          onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
         >{loading ? "Searching…" : "Search"}</button>
       </div>
       {error && (
