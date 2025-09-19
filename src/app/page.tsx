@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 
 function Spinner() {
@@ -36,11 +36,15 @@ function Card({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function Home() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<any[]>([]); // eslint-disable-line
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const handleSearch = async () => {
     setLoading(true);
@@ -72,6 +76,7 @@ export default function Home() {
       <h1 style={{fontSize: "2.2rem", fontWeight: 700, marginBottom: 18, color: "#00bcd4"}}>📝 Note Search</h1>
       <div style={{display: "flex", gap: 12, marginBottom: 24}}>
         <input
+          ref={inputRef}
           value={query}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
           placeholder="Search notes…"
