@@ -145,8 +145,15 @@ function Card({ children }: { children: React.ReactNode }) {
             </li>
           ))}
         {!loading && results.length === 0 && query.trim() && !error && (
-          <div style={{marginTop: 32, textAlign: "center", color: "#888"}}>
-            <span>No results found.</span>
+          <div style={{marginTop: 40, textAlign: "center", color: "#888"}}>
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginBottom: 12, opacity: 0.7}}>
+              <circle cx="32" cy="32" r="32" fill="#222" />
+              <path d="M20 44C20 38.4772 24.4772 34 30 34H34C39.5228 34 44 38.4772 44 44" stroke="#00bcd4" strokeWidth="3" strokeLinecap="round"/>
+              <ellipse cx="24" cy="28" rx="3" ry="4" fill="#00bcd4" />
+              <ellipse cx="40" cy="28" rx="3" ry="4" fill="#00bcd4" />
+            </svg>
+            <div style={{fontSize: 18, fontWeight: 500}}>No results found</div>
+            <div style={{fontSize: 14, marginTop: 4, color: "#aaa"}}>Try a different search term.</div>
           </div>
         )}
       </ul>
