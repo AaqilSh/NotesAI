@@ -116,34 +116,50 @@ function Card({ children }: { children: React.ReactNode }) {
       )}
       {loading && <Spinner />}
       <ul style={{marginTop:8, padding:0, listStyle: "none"}}>
-          {results.map((r) => (
-            <li key={r.id} style={{transition: "box-shadow 0.2s", borderRadius: 14, boxShadow: "0 0 0 rgba(0,0,0,0)", cursor: "pointer"}}
-                onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.18)")}
-                onMouseLeave={e => (e.currentTarget.style.boxShadow = "0 0 0 rgba(0,0,0,0)")}
-            >
-              <Card>
-                <div style={{display: "flex", alignItems: "center", gap: 12, marginBottom: 6}}>
-                  <div style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: "50%",
-                    background: "#222",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontWeight: 700,
-                    fontSize: 18,
-                    color: "#00bcd4",
-                    boxShadow: "0 1px 4px rgba(0,0,0,0.12)"
-                  }}>
-                    {r.title?.[0]?.toUpperCase() || "N"}
-                  </div>
-                  <strong style={{fontSize: "1.1rem", color: "#fff"}}>{r.title}</strong>
+        <style>{`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        `}</style>
+        {results.map((r, i) => (
+          <li
+            key={r.id}
+            style={{
+              transition: "box-shadow 0.2s",
+              borderRadius: 14,
+              boxShadow: "0 0 0 rgba(0,0,0,0)",
+              cursor: "pointer",
+              opacity: 0,
+              animation: `fadeIn 0.7s forwards`,
+              animationDelay: `${i * 0.07}s`
+            }}
+            onMouseEnter={(e: React.MouseEvent<HTMLLIElement>) => (e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.18)")}
+            onMouseLeave={(e: React.MouseEvent<HTMLLIElement>) => (e.currentTarget.style.boxShadow = "0 0 0 rgba(0,0,0,0)")}
+          >
+            <Card>
+              <div style={{display: "flex", alignItems: "center", gap: 12, marginBottom: 6}}>
+                <div style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  background: "#222",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontWeight: 700,
+                  fontSize: 18,
+                  color: "#00bcd4",
+                  boxShadow: "0 1px 4px rgba(0,0,0,0.12)"
+                }}>
+                  {r.title?.[0]?.toUpperCase() || "N"}
                 </div>
-                <p style={{marginTop: 8, color: "#bdbdbd"}}>{r.content}</p>
-              </Card>
-            </li>
-          ))}
+                <strong style={{fontSize: "1.1rem", color: "#fff"}}>{r.title}</strong>
+              </div>
+              <p style={{marginTop: 8, color: "#bdbdbd"}}>{r.content}</p>
+            </Card>
+          </li>
+        ))}
         {!loading && results.length === 0 && query.trim() && !error && (
           <div style={{marginTop: 40, textAlign: "center", color: "#888"}}>
             <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginBottom: 12, opacity: 0.7}}>
