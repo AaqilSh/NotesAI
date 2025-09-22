@@ -157,6 +157,25 @@ function Card({ children }: { children: React.ReactNode }) {
                 <strong style={{fontSize: "1.1rem", color: "#fff"}}>{r.title}</strong>
               </div>
               <p style={{marginTop: 8, color: "#bdbdbd"}}>{r.content}</p>
+              <div style={{marginTop: 10, fontSize: 13, color: "#8ecae6", display: "flex", gap: 16}}>
+                {r.email && (
+                  <span title="Author email" style={{display: "flex", alignItems: "center", gap: 4}}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{verticalAlign: "middle"}}>
+                      <path d="M4 4h16v16H4V4zm8 8l8-8H4l8 8z" fill="#8ecae6"/>
+                    </svg>
+                    {r.email}
+                  </span>
+                )}
+                {r.created_at && (
+                  <span title="Created date" style={{display: "flex", alignItems: "center", gap: 4}}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{verticalAlign: "middle"}}>
+                      <path d="M12 8v4l3 3" stroke="#8ecae6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx="12" cy="12" r="10" stroke="#8ecae6" strokeWidth="2" fill="none"/>
+                    </svg>
+                    {new Date(r.created_at).toLocaleDateString()}
+                  </span>
+                )}
+              </div>
             </Card>
           </li>
         ))}
