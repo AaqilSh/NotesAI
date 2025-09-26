@@ -103,6 +103,11 @@ function Card({ children }: { children: React.ReactNode }) {
           ref={inputRef}
           value={query}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
+          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+            if (e.key === "Enter" && !loading && query.trim()) {
+              handleSearch();
+            }
+          }}
           placeholder="Search notes…"
           style={{
             flex: 1,
