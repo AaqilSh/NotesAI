@@ -150,7 +150,35 @@ function Card({ children }: { children: React.ReactNode }) {
           {error}
         </div>
       )}
-      {loading && <Spinner />}
+      {loading && (
+        <ul style={{marginTop:8, padding:0, listStyle: "none"}}>
+          {Array.from({ length: 4 }).map((_, i) => (
+            <li key={i} style={{
+              borderRadius: 14,
+              background: isDark ? "#181a20" : "#f0f4f8",
+              marginBottom: 18,
+              padding: 20,
+              display: "flex",
+              alignItems: "center",
+              gap: 16,
+              boxShadow: isDark ? "0 2px 8px rgba(0,0,0,0.18)" : "0 2px 8px rgba(0,0,0,0.04)"
+            }}>
+              <div style={{
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                background: isDark ? "#222" : "#e3f2fd",
+                opacity: 0.5,
+                marginRight: 12
+              }} />
+              <div style={{flex: 1}}>
+                <div style={{height: 16, width: "40%", background: isDark ? "#222" : "#e3f2fd", borderRadius: 6, marginBottom: 10, opacity: 0.5}} />
+                <div style={{height: 12, width: "80%", background: isDark ? "#222" : "#e3f2fd", borderRadius: 6, opacity: 0.3}} />
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
       <ul style={{marginTop:8, padding:0, listStyle: "none"}}>
         <style>{`
           @keyframes fadeIn {
